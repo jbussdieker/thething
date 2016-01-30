@@ -219,6 +219,9 @@
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "ImageId": "ami-56ea8636",
+        "KeyName": {
+          "Ref": "KeyName"
+        },
         "NetworkInterfaces": [
           {
             "AssociatePublicIpAddress": "true",
@@ -288,6 +291,12 @@
           "PublicIp"
         ]
       }
+    }
+  },
+  "Parameters": {
+    "KeyName": {
+      "Description": "Select an existing key pair",
+      "Type": "AWS::EC2::KeyPair::KeyName"
     }
   }
 }
