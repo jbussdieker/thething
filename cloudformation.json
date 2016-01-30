@@ -276,7 +276,11 @@
                 "yum -y update\n",
                 "yum -y install salt-master\n",
                 "chkconfig salt-master on\n",
-                "service salt-master start\n"
+                "service salt-master start\n",
+                "echo \"127.0.0.1 salt\" >> /etc/hosts\n",
+                "yum -y install salt-minion\n",
+                "chkconfig salt-minion on\n",
+                "service salt-minion start\n"
               ]
             ]
           }
