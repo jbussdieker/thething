@@ -1,0 +1,32 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Metadata": {
+    "AWS::CloudFormation::Designer": {
+      "82ca3bbc-0a45-4f19-abd3-803624b0d69f": {
+        "size": {
+          "width": 330,
+          "height": 240
+        },
+        "position": {
+          "x": 60,
+          "y": 90
+        },
+        "z": 1,
+        "embeds": []
+      }
+    }
+  },
+  "Resources": {
+    "VPC": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "10.0.0.0/16"
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "82ca3bbc-0a45-4f19-abd3-803624b0d69f"
+        }
+      }
+    }
+  }
+}
