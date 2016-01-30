@@ -12,7 +12,9 @@
           "y": 90
         },
         "z": 1,
-        "embeds": []
+        "embeds": [
+          "c876c936-79bc-425d-86ce-796ca619e78a"
+        ]
       },
       "4665b1b9-fd37-4175-8b00-ca9d5b52e171": {
         "size": {
@@ -33,7 +35,19 @@
         "target": {
           "id": "82ca3bbc-0a45-4f19-abd3-803624b0d69f"
         },
-        "z": 0
+        "z": 1
+      },
+      "c876c936-79bc-425d-86ce-796ca619e78a": {
+        "size": {
+          "width": 160,
+          "height": 120
+        },
+        "position": {
+          "x": 140,
+          "y": 150
+        },
+        "z": 2,
+        "parent": "82ca3bbc-0a45-4f19-abd3-803624b0d69f"
       }
     }
   },
@@ -71,6 +85,19 @@
       "Metadata": {
         "AWS::CloudFormation::Designer": {
           "id": "255b44b5-c787-4b53-805d-c15c7178ee19"
+        }
+      }
+    },
+    "RouteTable": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "c876c936-79bc-425d-86ce-796ca619e78a"
         }
       }
     }
