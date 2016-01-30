@@ -215,34 +215,6 @@
         }
       }
     },
-    "Instance": {
-      "Type": "AWS::EC2::Instance",
-      "Properties": {
-        "ImageId": "ami-56ea8636",
-        "KeyName": {
-          "Ref": "KeyName"
-        },
-        "NetworkInterfaces": [
-          {
-            "AssociatePublicIpAddress": "true",
-            "DeviceIndex": "0",
-            "SubnetId": {
-              "Ref": "Subnet"
-            },
-            "GroupSet": [
-              {
-                "Ref": "SecurityGroup"
-              }
-            ]
-          }
-        ]
-      },
-      "Metadata": {
-        "AWS::CloudFormation::Designer": {
-          "id": "e9bc1436-b738-436c-8d04-0770c651ee09"
-        }
-      }
-    },
     "SecurityGroup": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
@@ -278,6 +250,58 @@
       "Metadata": {
         "AWS::CloudFormation::Designer": {
           "id": "74127dbd-2e60-4237-9f53-9c5d2333db27"
+        }
+      }
+    },
+    "Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-56ea8636",
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "rpm --import https://repo.saltstack.com/yum/redhat/6/x86_64/latest/SALTSTACK-GPG-KEY.pub\n",
+                "cat >/etc/yum.repos.d/saltstack.repo <<EOS\n",
+                "[saltstack-repo]\n",
+                "name=SaltStack repo for RHEL/CentOS 6\n",
+                "baseurl=https://repo.saltstack.com/yum/redhat/6/\\$basearch/latest\n",
+                "enabled=1\n",
+                "gpgcheck=1\n",
+                "gpgkey=https://repo.saltstack.com/yum/redhat/6/\\$basearch/latest/SALTSTACK-GPG-KEY.pub\n",
+                "EOS\n",
+                "yum clean expire-cache\n",
+                "yum -y update\n",
+                "yum -y install salt-master\n",
+                "chkconfig salt-master on\n",
+                "service salt-master start\n"
+              ]
+            ]
+          }
+        },
+        "KeyName": {
+          "Ref": "KeyName"
+        },
+        "NetworkInterfaces": [
+          {
+            "AssociatePublicIpAddress": "true",
+            "DeviceIndex": "0",
+            "SubnetId": {
+              "Ref": "Subnet"
+            },
+            "GroupSet": [
+              {
+                "Ref": "SecurityGroup"
+              }
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "e9bc1436-b738-436c-8d04-0770c651ee09"
         }
       }
     }
