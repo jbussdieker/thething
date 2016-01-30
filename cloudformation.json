@@ -193,9 +193,15 @@
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "ImageId": "ami-56ea8636",
-        "SubnetId": {
-          "Ref": "Subnet"
-        }
+        "NetworkInterfaces": [
+          {
+            "AssociatePublicIpAddress": "true",
+            "DeviceIndex": "0",
+            "SubnetId": {
+              "Ref": "Subnet"
+            }
+          }
+        ]
       },
       "Metadata": {
         "AWS::CloudFormation::Designer": {
