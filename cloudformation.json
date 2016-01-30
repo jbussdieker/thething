@@ -47,7 +47,34 @@
           "y": 150
         },
         "z": 2,
-        "parent": "82ca3bbc-0a45-4f19-abd3-803624b0d69f"
+        "parent": "82ca3bbc-0a45-4f19-abd3-803624b0d69f",
+        "embeds": [
+          "d7c28a5b-d953-475a-899b-7371687dae71"
+        ]
+      },
+      "d7c28a5b-d953-475a-899b-7371687dae71": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 190,
+          "y": 180
+        },
+        "z": 3,
+        "parent": "c876c936-79bc-425d-86ce-796ca619e78a",
+        "references": [
+          "4665b1b9-fd37-4175-8b00-ca9d5b52e171"
+        ]
+      },
+      "5bf6eeac-76aa-4de9-8ef2-92841870af5c": {
+        "source": {
+          "id": "d7c28a5b-d953-475a-899b-7371687dae71"
+        },
+        "target": {
+          "id": "4665b1b9-fd37-4175-8b00-ca9d5b52e171"
+        },
+        "z": 4
       }
     }
   },
@@ -98,6 +125,23 @@
       "Metadata": {
         "AWS::CloudFormation::Designer": {
           "id": "c876c936-79bc-425d-86ce-796ca619e78a"
+        }
+      }
+    },
+    "Route": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "RouteTableId": {
+          "Ref": "RouteTable"
+        },
+        "GatewayId": {
+          "Ref": "InternetGateway"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "d7c28a5b-d953-475a-899b-7371687dae71"
         }
       }
     }
