@@ -303,7 +303,11 @@
                 "echo \"127.0.0.1 salt\" >> /etc/hosts\n",
                 "yum -y install salt-minion\n",
                 "chkconfig salt-minion on\n",
-                "service salt-minion start\n"
+                "service salt-minion start\n",
+                "\n",
+                "salt-call state.highstate\n",
+                "salt-call state.highstate\n",
+                "salt-call state.highstate\n"
               ]
             ]
           }

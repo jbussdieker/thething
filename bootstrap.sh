@@ -40,3 +40,7 @@ echo "127.0.0.1 salt" >> /etc/hosts
 yum -y install salt-minion
 chkconfig salt-minion on
 service salt-minion start
+
+salt-call state.highstate
+salt-call state.highstate
+salt-call state.highstate
