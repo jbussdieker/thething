@@ -24,6 +24,14 @@ pip-2.6 install gitpython
 
 # Salt master
 yum -y install salt-master
+mkdir -p /etc/salt/master.d
+echo "auto_accept: True" > /etc/salt/master.d/auto_accept.conf
+cat >/etc/salt/master.d/gitfs.conf <<EOS
+fileserver_backend:
+  - git
+gitfs_remotes:
+  - git://github.com/jbussdieker/thething.git
+EOS
 chkconfig salt-master on
 service salt-master start
 
