@@ -122,6 +122,15 @@
         "z": 2,
         "parent": "82ca3bbc-0a45-4f19-abd3-803624b0d69f",
         "embeds": []
+      },
+      "74127dbd-2e60-4237-9f53-9c5d2333db27": {
+        "source": {
+          "id": "c876c936-79bc-425d-86ce-796ca619e78a"
+        },
+        "target": {
+          "id": "e1e8b7e6-89ab-4938-8ba2-2aaa0171b8bc"
+        },
+        "z": 2
       }
     }
   },
@@ -251,6 +260,33 @@
         "AWS::CloudFormation::Designer": {
           "id": "58cff12c-60d3-40f8-a6f2-1bc8cbc8273a"
         }
+      }
+    },
+    "SubnetRouteTableAssociation": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "RouteTable"
+        },
+        "SubnetId": {
+          "Ref": "Subnet"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "74127dbd-2e60-4237-9f53-9c5d2333db27"
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "PublicIp": {
+      "Description": "Instance Public DNS Name",
+      "Value": {
+        "Fn::GetAtt": [
+          "Instance",
+          "PublicIp"
+        ]
       }
     }
   }
