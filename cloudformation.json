@@ -1,11 +1,12 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "AWS CloudFormation Template for Salt-Master + Salt-Dashboard Version 1.0",
   "Metadata": {
     "AWS::CloudFormation::Designer": {
       "82ca3bbc-0a45-4f19-abd3-803624b0d69f": {
         "size": {
           "width": 700,
-          "height": 800
+          "height": 560
         },
         "position": {
           "x": 170,
@@ -13,7 +14,6 @@
         },
         "z": 1,
         "embeds": [
-          "c97a523a-f699-4a71-93f6-98cfe3f03b78",
           "89fe14d4-2594-4b80-ab30-e83b9ef9a1be",
           "e1e8b7e6-89ab-4938-8ba2-2aaa0171b8bc",
           "58cff12c-60d3-40f8-a6f2-1bc8cbc8273a",
@@ -147,34 +147,12 @@
         "parent": "82ca3bbc-0a45-4f19-abd3-803624b0d69f",
         "embeds": []
       },
-      "c97a523a-f699-4a71-93f6-98cfe3f03b78": {
-        "size": {
-          "width": 260,
-          "height": 210
-        },
-        "position": {
-          "x": 560,
-          "y": 580
-        },
-        "z": 2,
-        "parent": "82ca3bbc-0a45-4f19-abd3-803624b0d69f",
-        "embeds": []
-      },
       "85153b7c-774c-4ba4-9959-f704cbf2f333": {
         "source": {
           "id": "c876c936-79bc-425d-86ce-796ca619e78a"
         },
         "target": {
           "id": "89fe14d4-2594-4b80-ab30-e83b9ef9a1be"
-        },
-        "z": 2
-      },
-      "14c0afb1-3615-4630-8738-76a9ed7cd75d": {
-        "source": {
-          "id": "c876c936-79bc-425d-86ce-796ca619e78a"
-        },
-        "target": {
-          "id": "c97a523a-f699-4a71-93f6-98cfe3f03b78"
         },
         "z": 2
       }
@@ -362,6 +340,16 @@
       "Type": "AWS::EC2::Subnet",
       "Properties": {
         "CidrBlock": "10.0.1.0/24",
+        "AvailabilityZone": {
+          "Fn::Select": [
+            "0",
+            {
+              "Fn::GetAZs": {
+                "Ref": "AWS::Region"
+              }
+            }
+          ]
+        },
         "VpcId": {
           "Ref": "VPC"
         }
@@ -376,6 +364,16 @@
       "Type": "AWS::EC2::Subnet",
       "Properties": {
         "CidrBlock": "10.0.2.0/24",
+        "AvailabilityZone": {
+          "Fn::Select": [
+            "1",
+            {
+              "Fn::GetAZs": {
+                "Ref": "AWS::Region"
+              }
+            }
+          ]
+        },
         "VpcId": {
           "Ref": "VPC"
         }
@@ -383,20 +381,6 @@
       "Metadata": {
         "AWS::CloudFormation::Designer": {
           "id": "89fe14d4-2594-4b80-ab30-e83b9ef9a1be"
-        }
-      }
-    },
-    "Subnet3": {
-      "Type": "AWS::EC2::Subnet",
-      "Properties": {
-        "CidrBlock": "10.0.3.0/24",
-        "VpcId": {
-          "Ref": "VPC"
-        }
-      },
-      "Metadata": {
-        "AWS::CloudFormation::Designer": {
-          "id": "c97a523a-f699-4a71-93f6-98cfe3f03b78"
         }
       }
     },
@@ -429,22 +413,6 @@
       "Metadata": {
         "AWS::CloudFormation::Designer": {
           "id": "85153b7c-774c-4ba4-9959-f704cbf2f333"
-        }
-      }
-    },
-    "SubnetRouteTableAssociation3": {
-      "Type": "AWS::EC2::SubnetRouteTableAssociation",
-      "Properties": {
-        "RouteTableId": {
-          "Ref": "RouteTable"
-        },
-        "SubnetId": {
-          "Ref": "Subnet3"
-        }
-      },
-      "Metadata": {
-        "AWS::CloudFormation::Designer": {
-          "id": "14c0afb1-3615-4630-8738-76a9ed7cd75d"
         }
       }
     }
