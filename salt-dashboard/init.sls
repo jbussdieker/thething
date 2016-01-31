@@ -13,6 +13,9 @@ nodejs:
     - require:
       - pkg: v8
 
+postgresql94-devel:
+  pkg.installed: []
+
 ruby:
   pkg.installed: []
 
