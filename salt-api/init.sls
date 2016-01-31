@@ -20,7 +20,7 @@ salt_api:
     - fullname: Salt API User
     - shell: /bin/bash
     - home: /home/salt_api
-    - password: $6$by00SUY0$1wiOGpZjI4kcTzq7aH/iyGdF/PPLS3NfkTMTjBI0eVq.vNIw//vH91PSmAh9lzIZfsWlpro.BuUXKquSKkc9M1
+    - password: $6$2Vd8Oqe3$Oq6Y/6zTEx8FKWdLw9/CfgCUFuawFCB1TxNxlFU/Ek3qnzaqeLPk9MOpp4IvYIbACNLYQT07kKoAQCDx5poZK1
     - uid: 401
     - gid: 401
     - groups:
