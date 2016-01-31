@@ -426,6 +426,24 @@
           "PublicIp"
         ]
       }
+    },
+    "SaltDashboard": {
+      "Description": "Salt Dashboard URL",
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "http://",
+            {
+              "Fn::GetAtt": [
+                "Instance",
+                "PublicIp"
+              ]
+            },
+            ":3000/nodes"
+          ]
+        ]
+      }
     }
   },
   "Parameters": {
