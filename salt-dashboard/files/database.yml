@@ -1,0 +1,33 @@
+sqlite: &sqlite3
+  adapter: sqlite3
+  database: db/<%= Rails.env %>.sqlite3
+
+mysql: &mysql2
+  adapter: mysql2
+  username: root
+  password:
+  database: enc_<%= Rails.env %>
+
+postgresql: &pg
+  adapter: postgresql
+  host: jd1digu63j0kx4t.cxysuxuxdz5u.us-west-1.rds.amazonaws.com
+  username: salt_dashboard
+  password: password
+  database: enc_<%= Rails.env %>
+  min_messages: ERROR
+
+defaults: &defaults
+  pool: 16
+  timeout: 5000
+  host: localhost
+  <<: *<%= ENV['DB'] || "pg" %>
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  # presumably, we'd erb-echo the production password from /etc/something here.

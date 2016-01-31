@@ -13,9 +13,6 @@ nodejs:
     - require:
       - pkg: v8
 
-postgresql94-devel:
-  pkg.installed: []
-
 ruby:
   pkg.installed: []
 
@@ -38,6 +35,9 @@ io-console:
       - pkg: gcc
       - pkg: ruby-devel
 
+postgresql94-devel:
+  pkg.installed: []
+
 sqlite-devel:
   pkg.installed: []
 
@@ -55,10 +55,18 @@ ruby-enc-salt-config:
     - source: salt://salt-dashboard/files/salt.rb
     - template: jinja
 
+ruby-enc-db-config:
+  file.managed:
+    - name: /home/ec2-user/ruby-enc/config/database.yml
+    - source: salt://salt-dashboard/files/database.yml
+    - template: jinja
+
 bundle:
   cmd.run:
     - name: bundle && touch /home/ec2-user/ruby-enc/bundled.state
     - cwd: /home/ec2-user/ruby-enc
+    - env:
+      - DB: pg
     - user: ec2-user
     - unless: test -f /home/ec2-user/ruby-enc/bundled.state
 
@@ -66,6 +74,8 @@ dbmigrate:
   cmd.run:
     - name: sleep 10; bundle exec /home/ec2-user/bin/rake db:migrate && touch /home/ec2-user/ruby-enc/migrated.state
     - cwd: /home/ec2-user/ruby-enc
+    - env:
+      - DB: pg
     - user: ec2-user
     - require:
       - cmd: bundle
@@ -75,6 +85,8 @@ webserver:
   cmd.run:
     - name: bundle exec /home/ec2-user/bin/rails s -b 0.0.0.0 -d
     - cwd: /home/ec2-user/ruby-enc
+    - env:
+      - DB: pg
     - user: ec2-user
     - require:
       - cmd: dbmigrate
@@ -84,6 +96,8 @@ startworker:
   cmd.run:
     - name: nohup bundle exec /home/ec2-user/bin/rails r salt.rb 0<&- &> log/worker.log &
     - cwd: /home/ec2-user/ruby-enc
+    - env:
+      - DB: pg
     - user: ec2-user
     - require:
       - cmd: webserver
