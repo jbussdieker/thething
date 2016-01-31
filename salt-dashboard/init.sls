@@ -1,6 +1,12 @@
+v8:
+  pkg.installed:
+    - fromrepo: epel
+
 nodejs:
   pkg.installed:
     - fromrepo: epel
+    - require:
+      - pkg: v8
 
 ruby:
   pkg.installed: []
