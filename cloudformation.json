@@ -380,6 +380,21 @@
                 "# Salt minion\n",
                 "echo \"127.0.0.1 salt\" >> /etc/hosts\n",
                 "yum -y install salt-minion\n",
+                "mkdir -p /etc/salt/minion.d\n",
+                "cat >/etc/salt/minion.d/grains.conf <<EOS\n",
+                "grains:\n",
+                "  roles:\n",
+                "    - salt-master\n",
+                "    - salt-dashboard\n",
+                "  salt-dashboard-db-host: ",
+                {
+                  "Fn::GetAtt": [
+                    "DBInstance",
+                    "Endpoint.Address"
+                  ]
+                },
+                "\n",
+                "EOS\n",
                 "chkconfig salt-minion on\n",
                 "service salt-minion start\n",
                 "\n",
