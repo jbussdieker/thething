@@ -88,4 +88,4 @@ startworker:
     - require:
       - cmd: webserver
       - file: ruby-enc-salt-config
-    - unless: test -f /home/ec2-user/ruby-enc/log/worker.log
+    - unless: test -f /home/ec2-user/ruby-enc/tmp/pids/worker.pid
