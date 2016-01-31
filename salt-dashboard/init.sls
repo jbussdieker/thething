@@ -63,34 +63,34 @@ ruby-enc-db-config:
 
 bundle:
   cmd.run:
-    - name: bundle && touch /home/ec2-user/ruby-enc/bundled.state
+    - name: bundle && touch /var/tmp/ruby-enc.bundled.state
     - cwd: /home/ec2-user/ruby-enc
     - env:
       - DB: pg
     - user: ec2-user
-    - unless: test -f /home/ec2-user/ruby-enc/bundled.state
+    - unless: test -f /var/tmp/ruby-enc.bundled.state
 
 dbcreate:
   cmd.run:
-    - name: bundle exec /home/ec2-user/bin/rake db:create && touch /home/ec2-user/ruby-enc/db.created.state
+    - name: bundle exec /home/ec2-user/bin/rake db:create && touch /var/tmp/ruby-enc.db.created.state
     - cwd: /home/ec2-user/ruby-enc
     - env:
       - DB: pg
     - user: ec2-user
     - require:
       - cmd: bundle
-    - unless: test -f /home/ec2-user/ruby-enc/db.created.state
+    - unless: test -f /var/tmp/ruby-enc.db.created.state
 
 dbmigrate:
   cmd.run:
-    - name: bundle exec /home/ec2-user/bin/rake db:migrate && touch /home/ec2-user/ruby-enc/db.migrated.state
+    - name: bundle exec /home/ec2-user/bin/rake db:migrate && touch /var/tmp/ruby-enc.db.migrated.state
     - cwd: /home/ec2-user/ruby-enc
     - env:
       - DB: pg
     - user: ec2-user
     - require:
       - cmd: dbcreate
-    - unless: test -f /home/ec2-user/ruby-enc/db.migrated.state
+    - unless: test -f /var/tmp/ruby-enc.db.migrated.state
 
 webserver:
   cmd.run:
