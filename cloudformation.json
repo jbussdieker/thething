@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "AWS CloudFormation Template for Salt-Master + Salt-Dashboard Version 1.0",
+  "Description": "AWS CloudFormation Template for Salt-Master + Salt-Dashboard Version 1.1",
   "Metadata": {
     "AWS::CloudFormation::Designer": {
       "82ca3bbc-0a45-4f19-abd3-803624b0d69f": {
