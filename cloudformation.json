@@ -26,8 +26,8 @@
           "height": 60
         },
         "position": {
-          "x": 60,
-          "y": 340
+          "x": 70,
+          "y": 220
         },
         "z": 1,
         "embeds": []
@@ -141,7 +141,7 @@
         },
         "position": {
           "x": 560,
-          "y": 340
+          "y": 330
         },
         "z": 2,
         "parent": "82ca3bbc-0a45-4f19-abd3-803624b0d69f",
@@ -155,6 +155,55 @@
           "id": "89fe14d4-2594-4b80-ab30-e83b9ef9a1be"
         },
         "z": 2
+      },
+      "ce064bba-3f19-43d8-8ba9-0a7c5a09715d": {
+        "size": {
+          "width": 240,
+          "height": 560
+        },
+        "position": {
+          "x": 920,
+          "y": 40
+        },
+        "z": 0,
+        "embeds": [
+          "34346a3b-61c8-45cd-af2e-af6517ec4d9d"
+        ],
+        "isconnectedto": [
+          "e1e8b7e6-89ab-4938-8ba2-2aaa0171b8bc",
+          "89fe14d4-2594-4b80-ab30-e83b9ef9a1be"
+        ]
+      },
+      "48d511a0-e30a-49b0-85c2-a9939d7dded8": {
+        "source": {
+          "id": "ce064bba-3f19-43d8-8ba9-0a7c5a09715d"
+        },
+        "target": {
+          "id": "e1e8b7e6-89ab-4938-8ba2-2aaa0171b8bc"
+        },
+        "z": 4
+      },
+      "e4d75085-48d3-406a-bc05-0a0cc2b1fc80": {
+        "source": {
+          "id": "ce064bba-3f19-43d8-8ba9-0a7c5a09715d"
+        },
+        "target": {
+          "id": "89fe14d4-2594-4b80-ab30-e83b9ef9a1be"
+        },
+        "z": 5
+      },
+      "34346a3b-61c8-45cd-af2e-af6517ec4d9d": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 1010,
+          "y": 120
+        },
+        "z": 1,
+        "parent": "ce064bba-3f19-43d8-8ba9-0a7c5a09715d",
+        "embeds": []
       }
     }
   },
@@ -413,6 +462,43 @@
       "Metadata": {
         "AWS::CloudFormation::Designer": {
           "id": "85153b7c-774c-4ba4-9959-f704cbf2f333"
+        }
+      }
+    },
+    "DBSubnetGroup": {
+      "Type": "AWS::RDS::DBSubnetGroup",
+      "Properties": {
+        "DBSubnetGroupDescription": "Main Database Subnet Group",
+        "SubnetIds": [
+          {
+            "Ref": "Subnet1"
+          },
+          {
+            "Ref": "Subnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "ce064bba-3f19-43d8-8ba9-0a7c5a09715d"
+        }
+      }
+    },
+    "DBInstance": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "AllocatedStorage": "10",
+        "DBInstanceClass": "db.m3.medium",
+        "Engine": "postgres",
+        "MasterUsername": "salt_dashboard",
+        "MasterUserPassword": "password",
+        "DBSubnetGroupName": {
+          "Ref": "DBSubnetGroup"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "34346a3b-61c8-45cd-af2e-af6517ec4d9d"
         }
       }
     }
