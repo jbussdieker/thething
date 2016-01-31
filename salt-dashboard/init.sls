@@ -1,5 +1,6 @@
 nodejs:
-  pkg.installed: []
+  pkg.installed:
+    - fromrepo: epel
 
 ruby:
   pkg.installed: []
