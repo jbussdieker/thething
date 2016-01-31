@@ -10,7 +10,7 @@ mysql: &mysql2
 
 postgresql: &pg
   adapter: postgresql
-  host: jd1digu63j0kx4t.cxysuxuxdz5u.us-west-1.rds.amazonaws.com
+  host: {{ grains['salt-dashboard-db-host'] }}
   username: salt_dashboard
   password: password
   database: enc_<%= Rails.env %>
