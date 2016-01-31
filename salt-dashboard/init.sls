@@ -1,6 +1,11 @@
+compat-libicu4:
+  pkg.installed: []
+
 v8:
   pkg.installed:
     - fromrepo: epel
+    - require:
+      - pkg: compat-libicu4
 
 nodejs:
   pkg.installed:
