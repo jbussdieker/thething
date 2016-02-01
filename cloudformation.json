@@ -580,7 +580,16 @@
                 "\n",
                 "salt-call state.highstate\n",
                 "salt-call state.highstate\n",
-                "salt-call state.highstate\n"
+                "salt-call state.highstate --retcode-passthrough\n",
+                "/opt/aws/bin/cfn-signal -e $? --stack ",
+                {
+                  "Ref": "AWS::StackName"
+                },
+                " --resource SaltMasterInstance --region ",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "\n"
               ]
             ]
           }
@@ -605,6 +614,11 @@
             ]
           }
         ]
+      },
+      "CreationPolicy": {
+        "ResourceSignal": {
+          "Timeout": "PT30M"
+        }
       },
       "Metadata": {
         "AWS::CloudFormation::Designer": {
@@ -669,7 +683,16 @@
                 "\n",
                 "salt-call state.highstate\n",
                 "salt-call state.highstate\n",
-                "salt-call state.highstate\n"
+                "salt-call state.highstate --retcode-passthrough\n",
+                "/opt/aws/bin/cfn-signal -e $? --stack ",
+                {
+                  "Ref": "AWS::StackName"
+                },
+                " --resource SaltMinionInstance --region ",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "\n"
               ]
             ]
           }
@@ -694,6 +717,11 @@
             ]
           }
         ]
+      },
+      "CreationPolicy": {
+        "ResourceSignal": {
+          "Timeout": "PT30M"
+        }
       },
       "Metadata": {
         "AWS::CloudFormation::Designer": {
