@@ -460,7 +460,9 @@
       "Type": "AWS::RDS::DBInstance",
       "Properties": {
         "AllocatedStorage": "10",
-        "DBInstanceClass": "db.m3.medium",
+        "DBInstanceClass": {
+          "Ref": "DBInstanceClass"
+        },
         "Engine": "postgres",
         "MasterUsername": "salt_dashboard",
         "MasterUserPassword": "password",
@@ -514,6 +516,9 @@
             },
             "AMI"
           ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
         },
         "UserData": {
           "Fn::Base64": {
@@ -637,6 +642,9 @@
             },
             "AMI"
           ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
         },
         "UserData": {
           "Fn::Base64": {
@@ -829,6 +837,77 @@
     "KeyName": {
       "Description": "Select an existing key pair",
       "Type": "AWS::EC2::KeyPair::KeyName"
+    },
+    "InstanceType": {
+      "Description": "EC2 instance type",
+      "Type": "String",
+      "ConstraintDescription": "Must be a valid EC2 instance type",
+      "AllowedValues": [
+        "t1.micro",
+        "t2.micro",
+        "t2.small",
+        "t2.medium",
+        "m1.small",
+        "m1.medium",
+        "m1.large",
+        "m1.xlarge",
+        "m2.xlarge",
+        "m2.2xlarge",
+        "m2.4xlarge",
+        "m3.medium",
+        "m3.large",
+        "m3.xlarge",
+        "m3.2xlarge",
+        "c1.medium",
+        "c1.xlarge",
+        "c3.large",
+        "c3.xlarge",
+        "c3.2xlarge",
+        "c3.4xlarge",
+        "c3.8xlarge",
+        "g2.2xlarge",
+        "r3.large",
+        "r3.xlarge",
+        "r3.2xlarge",
+        "r3.4xlarge",
+        "r3.8xlarge",
+        "i2.xlarge",
+        "i2.2xlarge",
+        "i2.4xlarge",
+        "i2.8xlarge",
+        "hi1.4xlarge",
+        "hs1.8xlarge",
+        "cr1.8xlarge",
+        "cc2.8xlarge",
+        "cg1.4xlarge"
+      ],
+      "Default": "m1.small"
+    },
+    "DBInstanceClass": {
+      "Description": "RDS DB instance class",
+      "Type": "String",
+      "ConstraintDescription": "Must be a valid RDS DB instance class",
+      "AllowedValues": [
+        "db.m4.large",
+        "db.m4.xlarge",
+        "db.m4.2xlarge",
+        "db.m4.4xlarge",
+        "db.m4.10xlarge",
+        "db.m3.medium",
+        "db.m3.large",
+        "db.m3.xlarge",
+        "db.m3.2xlarge",
+        "db.r3.large",
+        "db.r3.xlarge",
+        "db.r3.2xlarge",
+        "db.r3.4xlarge",
+        "db.r3.8xlarge",
+        "db.t2.micro",
+        "db.t2.small",
+        "db.t2.medium",
+        "db.t2.large"
+      ],
+      "Default": "db.m3.medium"
     }
   },
   "Mappings": {
