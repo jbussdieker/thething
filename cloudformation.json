@@ -14,10 +14,12 @@
         },
         "z": 1,
         "embeds": [
+          "58cff12c-60d3-40f8-a6f2-1bc8cbc8273a",
+          "cebd75bc-9414-437d-a843-8048a8874485",
+          "edf9c5e7-bf57-4207-84cd-3cb075a5ab9d",
+          "fb49f2b0-d2d2-4f8f-b51d-1034d32abebc",
           "89fe14d4-2594-4b80-ab30-e83b9ef9a1be",
           "e1e8b7e6-89ab-4938-8ba2-2aaa0171b8bc",
-          "58cff12c-60d3-40f8-a6f2-1bc8cbc8273a",
-          "fb49f2b0-d2d2-4f8f-b51d-1034d32abebc",
           "c876c936-79bc-425d-86ce-796ca619e78a"
         ]
       },
@@ -111,7 +113,8 @@
         "embeds": [],
         "isrelatedto": [
           "58cff12c-60d3-40f8-a6f2-1bc8cbc8273a",
-          "34346a3b-61c8-45cd-af2e-af6517ec4d9d"
+          "34346a3b-61c8-45cd-af2e-af6517ec4d9d",
+          "edf9c5e7-bf57-4207-84cd-3cb075a5ab9d"
         ]
       },
       "58cff12c-60d3-40f8-a6f2-1bc8cbc8273a": {
@@ -120,8 +123,8 @@
           "height": 60
         },
         "position": {
-          "x": 660,
-          "y": 580
+          "x": 370,
+          "y": 330
         },
         "z": 2,
         "parent": "82ca3bbc-0a45-4f19-abd3-803624b0d69f",
@@ -147,7 +150,9 @@
         },
         "z": 2,
         "parent": "82ca3bbc-0a45-4f19-abd3-803624b0d69f",
-        "embeds": []
+        "embeds": [
+          "48067249-d3d4-4c2f-92bf-382a9058a8a0"
+        ]
       },
       "85153b7c-774c-4ba4-9959-f704cbf2f333": {
         "source": {
@@ -223,7 +228,8 @@
         "parent": "82ca3bbc-0a45-4f19-abd3-803624b0d69f",
         "embeds": [],
         "isrelatedto": [
-          "58cff12c-60d3-40f8-a6f2-1bc8cbc8273a"
+          "58cff12c-60d3-40f8-a6f2-1bc8cbc8273a",
+          "edf9c5e7-bf57-4207-84cd-3cb075a5ab9d"
         ]
       },
       "6dcbd3ba-dba1-4e8a-a4d8-75454261fadd": {
@@ -234,6 +240,53 @@
           "id": "fb49f2b0-d2d2-4f8f-b51d-1034d32abebc"
         },
         "z": 4
+      },
+      "48067249-d3d4-4c2f-92bf-382a9058a8a0": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 650,
+          "y": 400
+        },
+        "z": 3,
+        "parent": "89fe14d4-2594-4b80-ab30-e83b9ef9a1be",
+        "embeds": [],
+        "isrelatedto": [
+          "58cff12c-60d3-40f8-a6f2-1bc8cbc8273a",
+          "e9bc1436-b738-436c-8d04-0770c651ee09",
+          "cebd75bc-9414-437d-a843-8048a8874485"
+        ]
+      },
+      "edf9c5e7-bf57-4207-84cd-3cb075a5ab9d": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 370,
+          "y": 490
+        },
+        "z": 2,
+        "parent": "82ca3bbc-0a45-4f19-abd3-803624b0d69f",
+        "embeds": [],
+        "isrelatedto": [
+          "58cff12c-60d3-40f8-a6f2-1bc8cbc8273a"
+        ]
+      },
+      "cebd75bc-9414-437d-a843-8048a8874485": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 370,
+          "y": 580
+        },
+        "z": 2,
+        "parent": "82ca3bbc-0a45-4f19-abd3-803624b0d69f",
+        "embeds": []
       }
     }
   },
@@ -301,140 +354,6 @@
       "Metadata": {
         "AWS::CloudFormation::Designer": {
           "id": "d7c28a5b-d953-475a-899b-7371687dae71"
-        }
-      }
-    },
-    "SecurityGroup": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "Main Security Group",
-        "VpcId": {
-          "Ref": "VPC"
-        },
-        "SecurityGroupIngress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "FromPort": "22",
-            "IpProtocol": "tcp",
-            "ToPort": "22"
-          },
-          {
-            "CidrIp": "0.0.0.0/0",
-            "FromPort": "3000",
-            "IpProtocol": "tcp",
-            "ToPort": "3000"
-          }
-        ]
-      },
-      "Metadata": {
-        "AWS::CloudFormation::Designer": {
-          "id": "58cff12c-60d3-40f8-a6f2-1bc8cbc8273a"
-        }
-      }
-    },
-    "Instance": {
-      "Type": "AWS::EC2::Instance",
-      "Properties": {
-        "ImageId": {
-          "Fn::FindInMap": [
-            "RegionMap",
-            {
-              "Ref": "AWS::Region"
-            },
-            "AMI"
-          ]
-        },
-        "UserData": {
-          "Fn::Base64": {
-            "Fn::Join": [
-              "",
-              [
-                "#!/bin/bash\n",
-                "# Set hostname\n",
-                "hostname salt\n",
-                "\n",
-                "# Salt repo\n",
-                "rpm --import https://repo.saltstack.com/yum/redhat/6/x86_64/latest/SALTSTACK-GPG-KEY.pub\n",
-                "cat >/etc/yum.repos.d/saltstack.repo <<EOS\n",
-                "[saltstack-repo]\n",
-                "name=SaltStack repo for RHEL/CentOS 6\n",
-                "baseurl=https://repo.saltstack.com/yum/redhat/6/\\$basearch/latest\n",
-                "enabled=1\n",
-                "gpgcheck=1\n",
-                "gpgkey=https://repo.saltstack.com/yum/redhat/6/\\$basearch/latest/SALTSTACK-GPG-KEY.pub\n",
-                "EOS\n",
-                "\n",
-                "# Full update\n",
-                "yum clean expire-cache\n",
-                "yum -y update\n",
-                "\n",
-                "# Gitfs dependencies\n",
-                "yum -y install git\n",
-                "yum -y install python26-pip\n",
-                "pip-2.6 install gitpython\n",
-                "\n",
-                "# Salt master\n",
-                "yum -y install salt-master\n",
-                "mkdir -p /etc/salt/master.d\n",
-                "echo \"auto_accept: True\" > /etc/salt/master.d/auto_accept.conf\n",
-                "cat >/etc/salt/master.d/gitfs.conf <<EOS\n",
-                "fileserver_backend:\n",
-                "  - git\n",
-                "gitfs_remotes:\n",
-                "  - git://github.com/jbussdieker/thething.git\n",
-                "EOS\n",
-                "chkconfig salt-master on\n",
-                "service salt-master start\n",
-                "\n",
-                "# Salt minion\n",
-                "echo \"127.0.0.1 salt\" >> /etc/hosts\n",
-                "yum -y install salt-minion\n",
-                "mkdir -p /etc/salt/minion.d\n",
-                "cat >/etc/salt/minion.d/grains.conf <<EOS\n",
-                "grains:\n",
-                "  roles:\n",
-                "    - salt-master\n",
-                "    - salt-dashboard\n",
-                "  salt-dashboard-db-host: ",
-                {
-                  "Fn::GetAtt": [
-                    "DBInstance",
-                    "Endpoint.Address"
-                  ]
-                },
-                "\n",
-                "EOS\n",
-                "chkconfig salt-minion on\n",
-                "service salt-minion start\n",
-                "\n",
-                "salt-call state.highstate\n",
-                "salt-call state.highstate\n",
-                "salt-call state.highstate\n"
-              ]
-            ]
-          }
-        },
-        "KeyName": {
-          "Ref": "KeyName"
-        },
-        "NetworkInterfaces": [
-          {
-            "AssociatePublicIpAddress": "true",
-            "DeviceIndex": "0",
-            "SubnetId": {
-              "Ref": "Subnet1"
-            },
-            "GroupSet": [
-              {
-                "Ref": "SecurityGroup"
-              }
-            ]
-          }
-        ]
-      },
-      "Metadata": {
-        "AWS::CloudFormation::Designer": {
-          "id": "e9bc1436-b738-436c-8d04-0770c651ee09"
         }
       }
     },
@@ -570,7 +489,7 @@
         "SecurityGroupIngress": [
           {
             "SourceSecurityGroupId": {
-              "Ref": "SecurityGroup"
+              "Ref": "SaltMasterSecurityGroup"
             },
             "FromPort": "5432",
             "IpProtocol": "tcp",
@@ -583,14 +502,278 @@
           "id": "fb49f2b0-d2d2-4f8f-b51d-1034d32abebc"
         }
       }
+    },
+    "SaltMasterInstance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionMap",
+            {
+              "Ref": "AWS::Region"
+            },
+            "AMI"
+          ]
+        },
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "# Set hostname\n",
+                "hostname salt\n",
+                "\n",
+                "# Salt repo\n",
+                "rpm --import https://repo.saltstack.com/yum/redhat/6/x86_64/latest/SALTSTACK-GPG-KEY.pub\n",
+                "cat >/etc/yum.repos.d/saltstack.repo <<EOS\n",
+                "[saltstack-repo]\n",
+                "name=SaltStack repo for RHEL/CentOS 6\n",
+                "baseurl=https://repo.saltstack.com/yum/redhat/6/\\$basearch/latest\n",
+                "enabled=1\n",
+                "gpgcheck=1\n",
+                "gpgkey=https://repo.saltstack.com/yum/redhat/6/\\$basearch/latest/SALTSTACK-GPG-KEY.pub\n",
+                "EOS\n",
+                "\n",
+                "# Full update\n",
+                "yum clean expire-cache\n",
+                "yum -y update\n",
+                "\n",
+                "# Gitfs dependencies\n",
+                "yum -y install git\n",
+                "yum -y install python26-pip\n",
+                "pip-2.6 install gitpython\n",
+                "\n",
+                "# Salt master\n",
+                "yum -y install salt-master\n",
+                "mkdir -p /etc/salt/master.d\n",
+                "echo \"auto_accept: True\" > /etc/salt/master.d/auto_accept.conf\n",
+                "cat >/etc/salt/master.d/gitfs.conf <<EOS\n",
+                "fileserver_backend:\n",
+                "  - git\n",
+                "gitfs_remotes:\n",
+                "  - git://github.com/jbussdieker/thething.git\n",
+                "EOS\n",
+                "chkconfig salt-master on\n",
+                "service salt-master start\n",
+                "\n",
+                "# Salt minion\n",
+                "echo \"127.0.0.1 salt\" >> /etc/hosts\n",
+                "yum -y install salt-minion\n",
+                "mkdir -p /etc/salt/minion.d\n",
+                "cat >/etc/salt/minion.d/grains.conf <<EOS\n",
+                "grains:\n",
+                "  roles:\n",
+                "    - salt-master\n",
+                "    - salt-dashboard\n",
+                "  salt-dashboard-db-host: ",
+                {
+                  "Fn::GetAtt": [
+                    "DBInstance",
+                    "Endpoint.Address"
+                  ]
+                },
+                "\n",
+                "EOS\n",
+                "chkconfig salt-minion on\n",
+                "service salt-minion start\n",
+                "\n",
+                "salt-call state.highstate\n",
+                "salt-call state.highstate\n",
+                "salt-call state.highstate\n"
+              ]
+            ]
+          }
+        },
+        "KeyName": {
+          "Ref": "KeyName"
+        },
+        "NetworkInterfaces": [
+          {
+            "AssociatePublicIpAddress": "true",
+            "DeviceIndex": "0",
+            "SubnetId": {
+              "Ref": "Subnet1"
+            },
+            "GroupSet": [
+              {
+                "Ref": "MainSecurityGroup"
+              },
+              {
+                "Ref": "SaltMasterSecurityGroup"
+              }
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "e9bc1436-b738-436c-8d04-0770c651ee09"
+        }
+      }
+    },
+    "SaltMinionInstance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionMap",
+            {
+              "Ref": "AWS::Region"
+            },
+            "AMI"
+          ]
+        },
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "# Set hostname\n",
+                "hostname minion\n",
+                "\n",
+                "# Salt repo\n",
+                "rpm --import https://repo.saltstack.com/yum/redhat/6/x86_64/latest/SALTSTACK-GPG-KEY.pub\n",
+                "cat >/etc/yum.repos.d/saltstack.repo <<EOS\n",
+                "[saltstack-repo]\n",
+                "name=SaltStack repo for RHEL/CentOS 6\n",
+                "baseurl=https://repo.saltstack.com/yum/redhat/6/\\$basearch/latest\n",
+                "enabled=1\n",
+                "gpgcheck=1\n",
+                "gpgkey=https://repo.saltstack.com/yum/redhat/6/\\$basearch/latest/SALTSTACK-GPG-KEY.pub\n",
+                "EOS\n",
+                "\n",
+                "# Full update\n",
+                "yum clean expire-cache\n",
+                "yum -y update\n",
+                "\n",
+                "# Salt minion\n",
+                "echo \"",
+                {
+                  "Fn::GetAtt": [
+                    "SaltMasterInstance",
+                    "PrivateIp"
+                  ]
+                },
+                " salt\" >> /etc/hosts\n",
+                "yum -y install salt-minion\n",
+                "mkdir -p /etc/salt/minion.d\n",
+                "cat >/etc/salt/minion.d/grains.conf <<EOS\n",
+                "grains:\n",
+                "  roles:\n",
+                "    - salt-minion\n",
+                "EOS\n",
+                "chkconfig salt-minion on\n",
+                "service salt-minion start\n",
+                "\n",
+                "salt-call state.highstate\n",
+                "salt-call state.highstate\n",
+                "salt-call state.highstate\n"
+              ]
+            ]
+          }
+        },
+        "KeyName": {
+          "Ref": "KeyName"
+        },
+        "NetworkInterfaces": [
+          {
+            "AssociatePublicIpAddress": "true",
+            "DeviceIndex": "0",
+            "SubnetId": {
+              "Ref": "Subnet2"
+            },
+            "GroupSet": [
+              {
+                "Ref": "MainSecurityGroup"
+              },
+              {
+                "Ref": "SaltMinionSecurityGroup"
+              }
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "48067249-d3d4-4c2f-92bf-382a9058a8a0"
+        }
+      }
+    },
+    "SaltMasterSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Salt Master Security Group",
+        "VpcId": {
+          "Ref": "VPC"
+        },
+        "SecurityGroupIngress": [
+          {
+            "SourceSecurityGroupId": {
+              "Ref": "MainSecurityGroup"
+            },
+            "FromPort": "4505",
+            "IpProtocol": "tcp",
+            "ToPort": "4506"
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "FromPort": "3000",
+            "IpProtocol": "tcp",
+            "ToPort": "3000"
+          }
+        ]
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "edf9c5e7-bf57-4207-84cd-3cb075a5ab9d"
+        }
+      }
+    },
+    "SaltMinionSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Salt Minion Security Group",
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "cebd75bc-9414-437d-a843-8048a8874485"
+        }
+      }
+    },
+    "MainSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Main Security Group",
+        "VpcId": {
+          "Ref": "VPC"
+        },
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "FromPort": "22",
+            "IpProtocol": "tcp",
+            "ToPort": "22"
+          }
+        ]
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "58cff12c-60d3-40f8-a6f2-1bc8cbc8273a"
+        }
+      }
     }
   },
   "Outputs": {
-    "PublicIp": {
-      "Description": "Instance Public DNS Name",
+    "SaltMasterPublicIp": {
+      "Description": "Salt Master Public IP",
       "Value": {
         "Fn::GetAtt": [
-          "Instance",
+          "SaltMasterInstance",
           "PublicIp"
         ]
       }
@@ -604,7 +787,7 @@
             "http://",
             {
               "Fn::GetAtt": [
-                "Instance",
+                "SaltMasterInstance",
                 "PublicIp"
               ]
             },
