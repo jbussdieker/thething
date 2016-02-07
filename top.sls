@@ -1,7 +1,6 @@
-base:
-  '*':
-    - salt-minion
-  'salt':
-    - salt-master
-    - salt-api
-    - salt-dashboard
+graphite-stack:
+  'minion':
+    - whisper
+    - carbon
+    - graphite-web
+    - collectd
