@@ -600,7 +600,7 @@
           }
         },
         "KeyName": {
-          "Ref": "KeyName"
+          "Ref": "KeyNameSaltMaster"
         },
         "NetworkInterfaces": [
           {
@@ -706,7 +706,7 @@
           }
         },
         "KeyName": {
-          "Ref": "KeyName"
+          "Ref": "KeyNameSaltMinion"
         },
         "NetworkInterfaces": [
           {
@@ -831,10 +831,23 @@
           ]
         ]
       }
+    },
+    "SaltMinionPublicIp": {
+      "Description": "Salt Minion Public IP",
+      "Value": {
+        "Fn::GetAtt": [
+          "SaltMinionInstance",
+          "PublicIp"
+        ]
+      }
     }
   },
   "Parameters": {
-    "KeyName": {
+    "KeyNameSaltMaster": {
+      "Description": "Select an existing key pair",
+      "Type": "AWS::EC2::KeyPair::KeyName"
+    },
+    "KeyNameSaltMinion": {
       "Description": "Select an existing key pair",
       "Type": "AWS::EC2::KeyPair::KeyName"
     },
