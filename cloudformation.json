@@ -773,7 +773,15 @@
         "GroupDescription": "Salt Minion Security Group",
         "VpcId": {
           "Ref": "VPC"
-        }
+        },
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "FromPort": "8080",
+            "IpProtocol": "tcp",
+            "ToPort": "8080"
+          }
+        ]
       },
       "Metadata": {
         "AWS::CloudFormation::Designer": {
